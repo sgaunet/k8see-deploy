@@ -30,12 +30,12 @@ spec:
 
         readinessProbe:
           tcpSocket:
-            port: http
+            port: 8081
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
-            port: k8see-webui
+            port: 8081
           initialDelaySeconds: 15
           periodSeconds: 20
         resources:
