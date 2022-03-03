@@ -11,7 +11,7 @@ Contains all manifests to deploy the component of k8sEventsExporter in kubernete
 
 ## k8see-exporter
 
-Need to be launched in kubernetes, it will connect to kubernetes API and write in a redis stream the evnts of kubernetes
+Need to be launched in kubernetes, it will connect to kubernetes API and write in a redis stream the events of kubernetes
 
 ## k8see-importer
 
@@ -23,4 +23,4 @@ Can be outside the kubernetes cluster, it will query the postgreSQL database.
 
 # For tests
 
-In the folder manifests/tests, you can setup a kubernetes test cluster with the whole stack (no persistence of data). Everything is deployed in the default namespace.
+In the folder manifests/tests, you can setup a kubernetes test cluster with the whole stack (no persistence of data). Everything is deployed in the default namespace. As there is no persistence of data, the order is important, because it's the app k8see-importer that will initialize SQL tables.
