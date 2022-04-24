@@ -48,7 +48,7 @@ kubectl apply -f k8see-importer
 kubectl apply -f k8see-exporter
 
 # deploy the webui
-kubectl apply -f portal-ui
+kubectl apply -f k8see-webui
 
 # Create the ingress
 kubectl apply -f ingress.yaml
