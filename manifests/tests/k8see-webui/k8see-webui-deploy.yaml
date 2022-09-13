@@ -5,7 +5,7 @@ metadata:
   name: k8see-webui
   namespace: default
   annotations:
-    kubernetes.io/change-cause: Creation
+    kubernetes.io/change-cause: Version 0.1.0
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
@@ -20,7 +20,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: dashboard
-        image: sgaunet/k8see-webui:latest
+        image: sgaunet/k8see-webui:0.1.0
         ports:
         - containerPort: 8081
           name: http
