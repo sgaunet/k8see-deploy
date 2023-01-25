@@ -5,7 +5,7 @@ metadata:
   name: k8see-importer
   namespace: default
   annotations:
-    kubernetes.io/change-cause: Version 0.2.0
+    kubernetes.io/change-cause: Version 0.3.0
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
@@ -20,7 +20,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: importer
-        image: sgaunet/k8see-importer:0.2.0
+        image: sgaunet/k8see-importer:0.3.0
         ports:
         - containerPort: 8081
           name: http

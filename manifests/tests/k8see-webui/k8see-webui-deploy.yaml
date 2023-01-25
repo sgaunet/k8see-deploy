@@ -20,7 +20,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: dashboard
-        image: sgaunet/k8see-webui:0.1.0
+        image: sgaunet/k8see-webui:0.2.0
         ports:
         - containerPort: 8081
           name: http
