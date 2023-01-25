@@ -14,4 +14,4 @@ spec:
           service:
             name: svc-k8see-webui
             port:
-              number: 8081
+              number: 8080
