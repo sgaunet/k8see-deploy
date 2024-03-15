@@ -34,6 +34,16 @@ tasks:
       - kubectl apply -f manifests/tests/k8see-importer
       - kubectl apply -f manifests/tests/k8see-webui
 
+  uninstall:
+    desc: "Uninstall the application"
+    cmds:
+      - kubectl delete -f manifests/tests/ingress.yaml
+      - kubectl delete -f manifests/tests/redis
+      - kubectl delete -f manifests/tests/postgres
+      - kubectl delete -f manifests/tests/k8see-exporter
+      - kubectl delete -f manifests/tests/k8see-importer
+      - kubectl delete -f manifests/tests/k8see-webui
+
   install-keda:
     desc: "Install keda"
     cmds:
