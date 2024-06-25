@@ -1,0 +1,62 @@
+# https://taskfile.dev
+version: '3'
+# vars:
+#   IMG: 
+tasks:
+  default: 
+    desc: "List all tasks"
+    cmds:
+      - task -a
+  
+  create-cluster:
+    desc: "Create a kind cluster"
+    dir: manifests/tests
+    cmds:
+      - kind create cluster --config kind-config.yaml
+      - kubectl cluster-info --context kind-kind
+      - kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+      - kubectl wait --namespace ingress-nginx   --for=condition=ready pod   --selector=app.kubernetes.io/component=controller   --timeout=180s
+      - echo kubectl cluster-info --context kind-kind
+    # silent: true
+
+  delete-cluster:
+    desc: "Delete a kind cluster"
+    cmds:
+      - kind delete cluster
+
+  deploy:
+    desc: "Deploy the application"
+    cmds:
+      - kubectl apply -f manifests/tests/ingress.yaml
+      - kubectl apply -f manifests/tests/redis
+      - kubectl apply -f manifests/tests/postgres
+      - kubectl apply -f manifests/tests/k8see-exporter
+      - kubectl apply -f manifests/tests/k8see-importer
+      - kubectl apply -f manifests/tests/k8see-webui
+
+  uninstall:
+    desc: "Uninstall the application"
+    cmds:
+      - kubectl delete -f manifests/tests/ingress.yaml
+      - kubectl delete -f manifests/tests/redis
+      - kubectl delete -f manifests/tests/postgres
+      - kubectl delete -f manifests/tests/k8see-exporter
+      - kubectl delete -f manifests/tests/k8see-importer
+      - kubectl delete -f manifests/tests/k8see-webui
+
+  install-keda:
+    desc: "Install keda"
+    cmds:
+      - kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.10.1/keda-2.10.1.yaml
+
+  install-metrics-server:
+    desc: "Install metrics server"
+    cmds:
+      - kubectl apply -k metrics-server
+
+  install-prometheus:
+    desc: "Install kube-prometheus-stack"
+    cmds:
+      - kubectl create ns monitoring
+      - helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring
+      # - helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack-values.yaml -n monitoring

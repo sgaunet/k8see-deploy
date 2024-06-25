@@ -17,11 +17,12 @@ Docker image is named : sgaunet/k8see-exporter:0.1.0
 Can be outside of the kubernetes cluster, use the docker image or the binary. It will read the redis stream and write events in postgreSQL database.
 Docker image is named: sgaunet/k8see-importer:0.1.0
 
-## k8see-webui
+## k8see-webui archived (not maintained)
 
 Can be outside the kubernetes cluster, it will query the postgreSQL database. Binaries and docker images are available.
 Docker image is named: sgaunet/k8see-webui:0.1.0-beta1
 
+**Note** : The webui is not maintained anymore, not the time to maintain it. Maybe later.
 
 # Install 
 

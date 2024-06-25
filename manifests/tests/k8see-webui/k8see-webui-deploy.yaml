@@ -45,7 +45,7 @@ spec:
           limits:
             memory: "50Mi"
             cpu: "100m"
-        imagePullPolicy: Always
+        # imagePullPolicy: Always
 
       restartPolicy: Always
 
